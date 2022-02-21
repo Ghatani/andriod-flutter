@@ -15,77 +15,112 @@ class _loginState extends State<login> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
-        child: Form(
-          key: _formkey,
-          child: Column(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: ListView(
           children: [
-            CircleAvatar(
-              //backgroundImage: AssetImage(""),
-              radius: 80,
+            SizedBox(height: screenHeight * .12),
+            const Text(
+              "Welcome,",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: screenHeight * .01),
+            Text(
+              "Sign in to continue!",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black.withOpacity(.6),
+              ),
+            ),
+            SizedBox(height: screenHeight * .12),
             TextFormField(
-              validator: MultiValidator([
-                RequiredValidator(errorText: "* required"),
-                EmailValidator(errorText: 'Invalid email'),
-                //EmailValidator()
-              ]),
-              keyboardType: TextInputType.emailAddress,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              onChanged: (value) {
+                setState(() {
+                  
+                });
+              },
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.email),
                 labelText: 'Email',
                 hintText: 'Enter your email',
                 border: OutlineInputBorder(),
               ),
+              textInputAction: TextInputAction.next,
+              autofocus: true,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: screenHeight * .025),
             TextFormField(
-              validator: MultiValidator([
-                RequiredValidator(errorText: "* required"),
-                
-              ]),
-              keyboardType: TextInputType.visiblePassword,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              onChanged: (value) {
+                setState(() {
+                  
+                });
+              },
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.password),
+                prefixIcon: Icon(Icons.lock),
                 labelText: 'Password',
                 hintText: 'Enter your password',
                 border: OutlineInputBorder(),
-              ),             
+              ),
+              
+              obscureText: true,
+              textInputAction: TextInputAction.next,
             ),
-            SizedBox(height: 25),
-            ElevatedButton(onPressed: (){
-              if (_formkey.currentState!.validate()){
-                setState(() {
-                  _formkey.currentState!.save();
-                  MotionToast.success(description: 'Data saved successfully',
-                  title: 'Success',
-                  toastDuration: Duration(seconds: 3)).show(context);
-                });
-                
-              }
-              else{
-                MotionToast.error(description: 'Not inserted, Something went wrong',
-                title: 'error',
-                ).show(context);
-              }
-            },
-            child: Text('LOGIN')),
-            SizedBox(height: 15),
-            ElevatedButton(onPressed: (){
-              _formkey.currentState!.reset();
-            },
-            child: Text('CLEAR')),
-          ],
-        )),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * .075,
+            ),
+            ElevatedButton(
+              onPressed: (){
 
+              },
+              child: Text('LOGIN')
+            ),
+            SizedBox(
+              height: screenHeight * .15,
+            ),
+            TextButton(
+              onPressed: (){},
+              // onPressed: () => Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (_) => const register(),
+              //   ),
+              // ),
+              child: RichText(
+                text: const TextSpan(
+                  text: "I'm a new user, ",
+                  style: TextStyle(color: Colors.black),
+                  children: [
+                    TextSpan(
+                      text: "Sign Up",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
-      
     );
   }
 }
