@@ -1,4 +1,6 @@
 import 'package:dolakha_supplier_system/screen/homePage.dart';
+import 'package:dolakha_supplier_system/screen/login.dart';
+import 'package:dolakha_supplier_system/screen/register.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -13,8 +15,8 @@ class myApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/':(context) => homesrc(),
-     
+        '/':(context) => login(),
+        '/register' : (context) => register()
       },
     );
   }
