@@ -1,3 +1,4 @@
+import 'package:dolakha_supplier_system/screen/register.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -95,13 +96,13 @@ class _loginState extends State<login> {
               height: screenHeight * .15,
             ),
             TextButton(
-              onPressed: (){},
-              // onPressed: () => Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (_) => const register(),
-              //   ),
-              // ),
+              //onPressed: (){},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const register(),
+                ),
+              ),
               child: RichText(
                 text: const TextSpan(
                   text: "I'm a new user, ",
