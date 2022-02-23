@@ -13,7 +13,7 @@ class _profileState extends State<profile> {
     return Scaffold(
       
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
@@ -68,7 +68,7 @@ class _profileState extends State<profile> {
                                 style: TextStyle(color: Colors.white)                         
                               ),
                             ),
-                            
+                            SizedBox(height: 10),
                             Text(
                               'Welcome Back!',
                               style: TextStyle(color: Colors.white)
@@ -80,9 +80,154 @@ class _profileState extends State<profile> {
                   ),
                 ),
               ),
+              Padding(
+  padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+  child: Column(
+    mainAxisSize: MainAxisSize.max,
+    children: [
+      Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Text(
+              'Quick GoTo',
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.24,
+              decoration: BoxDecoration(
+                
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                      child: Icon(
+                        Icons.people_alt_rounded,
+                        
+                        size: 36,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                      child: Text(
+                        'Customers',
+                        textAlign: TextAlign.center,
+                        
+                        
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () async {
+                
+                
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.24,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                        child: Icon(
+                          Icons.receipt_long_rounded,
+                         
+                          size: 36,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(
+                          'Records',
+                          
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () async {
+                // await Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => NavBarPage(initialPage: 'MY_Card'),
+                //   ),
+                //   (r) => false,
+                // );
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.24,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                        child: Icon(
+                          Icons.attach_money_rounded,
+                          
+                          size: 36,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(
+                          'Transaction',
+                         
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ),
+              ],
+            ),
+          ),
+          ],
+          ),
+          ),
+
+
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
                   color: Color(0xFFEEEEEE),
                 ),
