@@ -63,7 +63,7 @@ class _materialsState extends State<materials> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        "Lifestyle Sale",
+                        "Materials Sale",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 35,
@@ -80,7 +80,7 @@ class _materialsState extends State<materials> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                          "Shop Now",
+                          "Get Now",
                           style: TextStyle(
                               color: Colors.grey[900],
                               fontWeight: FontWeight.bold),
