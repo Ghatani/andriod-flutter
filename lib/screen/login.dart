@@ -22,103 +22,127 @@ class _loginState extends State<login> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
           children: [
-            SizedBox(height: screenHeight * .12),
-            const Text(
-              "Welcome,",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: screenHeight * .01),
-            Text(
-              "Sign in to continue!",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black.withOpacity(.6),
-              ),
-            ),
-            SizedBox(height: screenHeight * .12),
-            TextFormField(
-              onChanged: (value) {
-                setState(() {
-                  
-                });
-              },
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.email),
-                labelText: 'Email',
-                hintText: 'Enter your email',
-                border: OutlineInputBorder(),
-              ),
-              textInputAction: TextInputAction.next,
-              autofocus: true,
-            ),
-            SizedBox(height: screenHeight * .025),
-            TextFormField(
-              onChanged: (value) {
-                setState(() {
-                  
-                });
-              },
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock),
-                labelText: 'Password',
-                hintText: 'Enter your password',
-                border: OutlineInputBorder(),
-              ),
-              
-              obscureText: true,
-              textInputAction: TextInputAction.next,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Forgot Password?",
+            Form( 
+              key: _formkey,
+              child: Column(
+              children: [
+                SizedBox(height: screenHeight * .12),
+                const Text(
+                  "Welcome,",
                   style: TextStyle(
-                    color: Colors.black,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: screenHeight * .075,
-            ),
-            ElevatedButton(
-              onPressed: (){
-
-              },
-              child: Text('LOGIN')
-            ),
-            SizedBox(
-              height: screenHeight * .15,
-            ),
-            TextButton(
-              //onPressed: (){},
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const register(),
+                SizedBox(height: screenHeight * .01),
+                Text(
+                  "Sign in to continue!",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black.withOpacity(.6),
+                  ),
                 ),
-              ),
-              child: RichText(
-                text: const TextSpan(
-                  text: "I'm a new user, ",
-                  style: TextStyle(color: Colors.black),
-                  children: [
-                    TextSpan(
-                      text: "Sign Up",
+                SizedBox(height: screenHeight * .12),     
+                   
+                TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "* required"),
+                    EmailValidator(errorText: 'Invalid email'),
+                    //EmailValidator()
+                  ]),
+          
+                  onChanged: (value) {
+                    setState(() {
+                      
+                    });
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
+                    labelText: 'Email',
+                    hintText: 'Enter your email',
+                    border: OutlineInputBorder(),
+                  ),
+                  textInputAction: TextInputAction.next,
+                  autofocus: true,
+                ),
+                SizedBox(height: screenHeight * .025),
+                TextFormField(
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "* required"),
+                    
+                  ]),
+                  
+                  onChanged: (value) {
+                    setState(() {
+                      
+                    });
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
+                    labelText: 'Password',
+                    hintText: 'Enter your password',
+                    border: OutlineInputBorder(),
+                  ),
+                  
+                  obscureText: true,
+                  textInputAction: TextInputAction.next,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Forgot Password?",
                       style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            )
+                SizedBox(
+                  height: screenHeight * .075,
+                ),
+                ElevatedButton(
+                  onPressed: (){
+                    if (_formkey.currentState!.validate()){
+                      setState(() {
+                        _formkey.currentState!.save();
+                        Navigator.pushNamed(context, '/home');
+                      });
+                    }
+              
+                  },
+                  child: Text('LOGIN')
+                ),
+                
+                SizedBox(
+                  height: screenHeight * .15,
+                ),
+                TextButton(                
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const register(),
+                    ),
+                  ),
+                  child: RichText(
+                    text: const TextSpan(
+                      text: "I'm a new user, ",
+                      style: TextStyle(color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: "Sign Up",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],)
+            ),
           ],
         ),
       ),
