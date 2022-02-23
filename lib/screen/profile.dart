@@ -102,44 +102,48 @@ class _profileState extends State<profile> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.24,
-              decoration: BoxDecoration(
-                
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                      child: Icon(
-                        Icons.people_alt_rounded,
-                        
-                        size: 36,
+            InkWell(
+              onTap: () async {
+                Navigator.pushNamed(context, '/customer');
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.24,
+                decoration: BoxDecoration(
+                  
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                        child: Icon(
+                          Icons.people_alt_rounded,
+                          
+                          size: 36,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                      child: Text(
-                        'Customers',
-                        textAlign: TextAlign.center,
-                        
-                        
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(
+                          'Customers',
+                          textAlign: TextAlign.center,
+                          
+                          
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
             InkWell(
               onTap: () async {
-                
-                
+                       
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.24,
@@ -227,7 +231,7 @@ class _profileState extends State<profile> {
 
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   color: Color(0xFFEEEEEE),
                 ),
@@ -568,10 +572,14 @@ class _profileState extends State<profile> {
         onPressed: () {
           // Add your onPressed code here!
         },
-        backgroundColor: Colors.green,
-        child: Icon(Icons.add_circle_rounded),
+        backgroundColor: Colors.black87,
+        child: Icon(Icons.create),
     ),
-      
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black38,
+        child: Container(height: 50.0),
+      ),  
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
