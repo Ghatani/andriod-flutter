@@ -48,8 +48,7 @@ class _materialsState extends State<materials> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                        image: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2017/08/31/11/55/wedding-2700495__340.jpg'),
+                        image: AssetImage('assets/images/sand.png'),
                         fit: BoxFit.cover)),
                 child: Container(
                   decoration: BoxDecoration(
@@ -63,7 +62,7 @@ class _materialsState extends State<materials> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        "Materials Sale",
+                        "Materials List",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 35,
@@ -72,19 +71,29 @@ class _materialsState extends State<materials> {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        height: 50,
-                        margin: EdgeInsets.symmetric(horizontal: 40),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                        child: Center(
-                            child: Text(
-                          "Get Now",
-                          style: TextStyle(
-                              color: Colors.grey[900],
-                              fontWeight: FontWeight.bold),
-                        )),
+                      Opacity(
+                        opacity: 0.50,
+                        child: Container(
+                          height: 50,
+                          margin: EdgeInsets.symmetric(horizontal: 40),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              
+                          ),
+                          child: Center(
+                              child: TextButton(
+                                onPressed: (){
+
+                                },
+                                child: Text(                               
+                                "Add New",                       
+                                  style: TextStyle(
+                                  color: Colors.grey[900],
+                                  fontWeight: FontWeight.bold),
+                                                        ),
+                              )),
+                        ),
                       ),
                       SizedBox(
                         height: 30,
