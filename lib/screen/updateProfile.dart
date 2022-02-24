@@ -8,6 +8,8 @@ class updateProfile extends StatefulWidget {
 }
 
 class _updateProfileState extends State<updateProfile> {
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,153 +28,160 @@ class _updateProfileState extends State<updateProfile> {
       backgroundColor: Color.fromRGBO(26, 31, 36, 1),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 1,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: Image.asset(
-              '',
-            ).image,
-          ),
-        ),
+        height: MediaQuery.of(context).size.height * 1,    
+
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                child: InkWell(
-                  onTap: () async {
-                    
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    //child: Image.network(),
+          child: Form(
+            key: _formkey,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  child: InkWell(
+                    onTap: () async {
                       
-                    
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.add_a_photo, color: Colors.white),                             
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'Upload a photo for us to easily identify you.',
-                style: TextStyle(color: Colors.grey),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                child: TextFormField(
-                  //controller: yourNameController,
-                  obscureText: false,
-                  style: TextStyle(color: Colors.white54),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.people, color: Colors.white54),
-                    labelText: 'Username',                              
-                    labelStyle: TextStyle(color: Colors.white54),   
-                    floatingLabelStyle: TextStyle(color: Colors.cyan[100]),                                              
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    filled: true,
-                    fillColor: Color.fromRGBO(17, 20, 23, 1),
-                    contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
-                  ),                                         
+                Text(
+                  'Upload a photo for us to easily identify you.',
+                  style: TextStyle(color: Colors.grey),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                child: TextFormField(
-                  //controller: yourController,
-                  obscureText: false,
-                  style: TextStyle(color: Colors.white54),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.phone, color: Colors.white54),
-                    labelText: 'Phone No',
-                    labelStyle: TextStyle(color: Colors.white54),                     
-                    floatingLabelStyle: TextStyle(color: Colors.cyan[100]),                  
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                  child: TextFormField(
+                    validator: (value){
+                        if (value==null || value.isEmpty){return "Field cannot be empty";}
+                        return null;
+                      },
+                    //controller: yourNameController,
+                    obscureText: false,
+                    style: TextStyle(color: Colors.white54),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.people, color: Colors.white54),
+                      labelText: 'Username',                              
+                      labelStyle: TextStyle(color: Colors.white54),   
+                      floatingLabelStyle: TextStyle(color: Colors.cyan[100]),                                              
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    filled: true,
-                    fillColor: Color.fromRGBO(17, 20, 23, 1),
-                    contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
-                  ),                 
-                  keyboardType: TextInputType.number,
+                      filled: true,
+                      fillColor: Color.fromRGBO(17, 20, 23, 1),
+                      contentPadding:
+                          EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                    ),                                         
+                  ),
                 ),
-              ),
-              
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: 
-                ElevatedButton(
-                  onPressed: (){
-                      
-                  }, 
-                  child: Text('Complete Profile',style: TextStyle(color: Colors.white)),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(0, 150, 138, 1)), 
-                    fixedSize: MaterialStateProperty.all<Size>(Size(230, 50)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(color: Colors.transparent, width: 1),                        
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                  child: TextFormField(
+                    validator: (value){
+                        if (value==null || value.isEmpty){return "Field cannot be empty";}
+                        return null;
+                      },
+                    //controller: yourController,
+                    obscureText: false,
+                    style: TextStyle(color: Colors.white54),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.phone, color: Colors.white54),
+                      labelText: 'Phone No',
+                      labelStyle: TextStyle(color: Colors.white54),                     
+                      floatingLabelStyle: TextStyle(color: Colors.cyan[100]),                  
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      filled: true,
+                      fillColor: Color.fromRGBO(17, 20, 23, 1),
+                      contentPadding:
+                          EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                    ),                 
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+                
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: 
+                  ElevatedButton(
+                    onPressed: (){
+                        if (_formkey.currentState!.validate()){
+                            setState(() {
+                            _formkey.currentState!.save();
+                                    
+                            });
+                        }          
+                    },
+                    child: Text('Complete Profile',style: TextStyle(color: Colors.white)),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(0, 150, 138, 1)), 
+                      fixedSize: MaterialStateProperty.all<Size>(Size(230, 50)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          side: BorderSide(color: Colors.transparent, width: 1),                        
+                        )
                       )
                     )
                   )
-                )
-                
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: 
-                ElevatedButton(
-                  onPressed: (){
-                      Navigator.pop(context);
-                  }, 
-                  child: Text('Skip for Now',style: TextStyle(color: Colors.white)),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(26, 31, 36, 1)), 
-                    fixedSize: MaterialStateProperty.all<Size>(Size(140, 50)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(color: Colors.transparent, width: 1),
-                        
+                  
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: 
+                  ElevatedButton(
+                    onPressed: (){
+                        Navigator.pop(context);
+                    }, 
+                    child: Text('Skip for Now',style: TextStyle(color: Colors.white)),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(26, 31, 36, 1)), 
+                      fixedSize: MaterialStateProperty.all<Size>(Size(140, 50)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          side: BorderSide(color: Colors.transparent, width: 1),
+                          
+                        )
                       )
                     )
                   )
-                )
+                  
+                ),
                 
-              ),
-              
-            ],
+              ],
+            ),
           ),
         ),
       ),
