@@ -47,8 +47,8 @@ class _loginState extends State<login> {
                 TextFormField(
                   validator: MultiValidator([
                     RequiredValidator(errorText: "* required"),
-                    EmailValidator(errorText: 'Invalid email'),
-                    //EmailValidator()
+                    //EmailValidator(errorText: 'Invalid email'),
+                    
                   ]),
           
                   onChanged: (value) {
