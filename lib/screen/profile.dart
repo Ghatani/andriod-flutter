@@ -610,8 +610,34 @@ class _profileState extends State<profile> {
       ]
     ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black38,
-        child: Container(height: 50.0),
+        color: Color(0xFF757575),    
+        shape: CircularNotchedRectangle(),
+        // child: Container(height: 50.0),
+        child: IconTheme(
+        data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              tooltip: 'Open navigation menu',
+              icon: const Icon(Icons.menu),
+              onPressed: () {},
+            ),           
+            IconButton(
+              tooltip: 'Search',
+              icon: const Icon(Icons.search),
+              onPressed: () {},
+            ),
+            IconButton(
+              tooltip: 'Edit Profile',
+              icon: const Icon(Icons.person_pin_outlined),
+              onPressed: () {
+                Navigator.pushNamed(context, '/updateProfile');
+              },
+            ),
+          ],
+        ),
+      ),
+
       ),  
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
