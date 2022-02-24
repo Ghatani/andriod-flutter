@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class profile extends StatefulWidget {
   const profile({ Key? key }) : super(key: key);
@@ -143,7 +144,7 @@ class _profileState extends State<profile> {
             ),
             InkWell(
               onTap: () async {
-                       
+                       Navigator.pushNamed(context, '/addRecord');
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.24,
@@ -568,12 +569,45 @@ class _profileState extends State<profile> {
         ),
       ),
 
-    floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        backgroundColor: Colors.black87,
-        child: Icon(Icons.create),
+    // floatingActionButton: FloatingActionButton(
+    //     onPressed: () {
+    //       // Add your onPressed code here!
+    //     },
+    //     backgroundColor: Colors.black87,
+    //     child: Icon(Icons.create),
+    //     elevation: 12,
+    // ),
+    floatingActionButton: SpeedDial(
+      //animatedIcon: AnimatedIcons.add_event,
+      backgroundColor: Colors.black,
+      activeIcon: Icons.cancel_rounded,    
+      icon: Icons.create,
+      elevation: 7,
+      buttonSize: Size(50, 50),
+      
+      children:[
+        SpeedDialChild(
+          onTap: (){
+            Navigator.pushNamed(context, '/customer');
+          },
+          child: Icon(Icons.people_alt_outlined),
+          label: 'customer'
+        ),
+        SpeedDialChild(
+           onTap: (){
+            Navigator.pushNamed(context, '/addRecord');
+          },
+          child: Icon(Icons.note_add_rounded),
+          label: 'record'
+        ),
+        SpeedDialChild(
+           onTap: (){
+            Navigator.pushNamed(context, '/addTransaction');
+          },
+          child: Icon(Icons.receipt_rounded),
+          label: 'transaction'
+        ),
+      ]
     ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black38,
