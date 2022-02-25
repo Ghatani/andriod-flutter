@@ -105,7 +105,7 @@ class _profileState extends State<profile> {
           children: [
             InkWell(
               onTap: () async {
-                Navigator.pushNamed(context, '/customer');
+                Navigator.pushNamed(context, '/customerView');
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.24,
@@ -144,7 +144,7 @@ class _profileState extends State<profile> {
             ),
             InkWell(
               onTap: () async {
-                       Navigator.pushNamed(context, '/addRecord');
+                       Navigator.pushNamed(context, '/records');
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.24,
@@ -181,6 +181,7 @@ class _profileState extends State<profile> {
             ),
             InkWell(
               onTap: () async {
+                Navigator.pushNamed(context, '/transaction');
                 // await Navigator.pushAndRemoveUntil(
                 //   context,
                 //   MaterialPageRoute(
@@ -623,9 +624,11 @@ class _profileState extends State<profile> {
               onPressed: () {},
             ),           
             IconButton(
-              tooltip: 'Search',
-              icon: const Icon(Icons.search),
-              onPressed: () {},
+              tooltip: 'Materials',
+              icon: const Icon(Icons.storage_rounded),
+              onPressed: () {
+
+              },
             ),
             IconButton(
               tooltip: 'Edit Profile',
