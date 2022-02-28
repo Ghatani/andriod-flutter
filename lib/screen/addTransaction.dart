@@ -242,6 +242,7 @@ class _addTransactionState extends State<addTransaction> {
               SizedBox(height: 20),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,

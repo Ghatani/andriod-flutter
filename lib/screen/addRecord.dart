@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class addRecord extends StatefulWidget {
   const addRecord({ Key? key }) : super(key: key);
 
+  
+
   @override
   _addRecordState createState() => _addRecordState();
 }
