@@ -1,4 +1,11 @@
+import 'dart:convert';
+
+import 'package:dolakha_supplier_system/utility/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'addRecord.dart';
+import 'updateRecord.dart';
 
 class records extends StatefulWidget {
   const records({ Key? key }) : super(key: key);
@@ -8,6 +15,16 @@ class records extends StatefulWidget {
 }
 
 class _recordsState extends State<records> {
+
+List list1 = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getListApi();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +67,16 @@ class _recordsState extends State<records> {
             ),
           ),
           SizedBox(height: 20),
-          Container(
+          ListView.builder(
+            itemCount: list1.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                  UpdateRecordScreen(list1[index]['materialName'].toString(), list1[index]['date'].toString())));
+                },
+                child: Container(
                     width: MediaQuery.of(context).size.width * 0.92,
                     height: 70,
                     decoration: BoxDecoration(
@@ -89,7 +115,7 @@ class _recordsState extends State<records> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Sand',
+                                  list1[index]['materialName'].toString(),
                                   style: TextStyle(color: Colors.white),
                                       ),
                                 
@@ -97,7 +123,7 @@ class _recordsState extends State<records> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 0),
                                   child: Text(
-                                    'date',
+                                    list1[index]['date'].toString(),
                                     style: TextStyle(color: Colors.white38), 
                                   ),
                                 ),
@@ -117,15 +143,15 @@ class _recordsState extends State<records> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0, 4, 0, 0),
-                                child: Text('8', style: TextStyle(color: Colors.white38),),
+                                child: Text(list1[index]['quantity'].toString(), style: TextStyle(color: Colors.white38),),
                               ),
                             ],
                           ),
                         ),
-                  
-
-        ],),    
-        ),
+                  ],),    
+                ),
+              );
+            },)
         ],), 
       
 
@@ -140,5 +166,22 @@ class _recordsState extends State<records> {
           child: Icon(Icons.note_add_sharp),
         ),
     );
+  }
+
+  void getListApi() async {
+    // login api should be here
+    var url = Uri.parse('https://mangodb/user/login');
+    var response = await http.get(url);
+
+    // print('Response body: ${response.body}');
+
+    var responseData = jsonDecode(response.body); 
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      setState(() {
+        list1 = responseData;
+      });
+    } else {
+      showToastMessage(responseData['message'], Colors.red);
+    }
   }
 }
