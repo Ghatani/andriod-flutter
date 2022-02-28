@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:dolakha_supplier_system/utility/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class register extends StatefulWidget {
   const register({ Key? key }) : super(key: key);
@@ -9,6 +13,11 @@ class register extends StatefulWidget {
 
 class _registerState extends State<register> {
   
+  // text field controller init
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -110,4 +119,23 @@ class _registerState extends State<register> {
       ),
     );
   }
+
+  // register api  
+  void registerUser(String username, String password, String phone) async {
+    // login api should be here
+    var url = Uri.parse('https://example.com/whatsit/create');
+    var response = await http.post(url, 
+    body: {'username': username, 'password': password, 'phone': phone});
+
+    // print('Response body: ${response.body}');
+
+    var responseData = jsonDecode(response.body); 
+    if (responseData['message'] == 'Login success') {
+      showToastMessage(responseData['message'], Colors.green);
+      Navigator.pushNamed(context, '/home');
+    } else {
+      showToastMessage(responseData['message'], Colors.red);
+    }
+  }
+
 }

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:dolakha_supplier_system/screen/register.dart';
+import 'package:dolakha_supplier_system/utility/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:motion_toast/motion_toast.dart';
+
+import 'package:http/http.dart' as http;
 
 class login extends StatefulWidget {
   const login({ Key? key }) : super(key: key);
@@ -13,6 +17,10 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   String email="";
   final _formkey = GlobalKey<FormState>();
+
+// text field controller init
+ final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +53,7 @@ class _loginState extends State<login> {
                 SizedBox(height: screenHeight * .12),     
                    
                 TextFormField(
+                  controller: _usernameController,
                   validator: MultiValidator([
                     RequiredValidator(errorText: "* required"),
                     //EmailValidator(errorText: 'Invalid email'),
@@ -67,6 +76,7 @@ class _loginState extends State<login> {
                 ),
                 SizedBox(height: screenHeight * .025),
                 TextFormField(
+                  controller: _passwordController,
                   validator: MultiValidator([
                     RequiredValidator(errorText: "* required"),
                     
@@ -107,7 +117,7 @@ class _loginState extends State<login> {
                     if (_formkey.currentState!.validate()){
                       setState(() {
                         _formkey.currentState!.save();
-                        Navigator.pushNamed(context, '/home');
+                        authCheck(_usernameController.text.toString(), _passwordController.text.toString());
                       });
                     }
               
@@ -147,5 +157,23 @@ class _loginState extends State<login> {
         ),
       ),
     );
+  }
+
+  void authCheck(String username, String password) async {
+    // login api should be here
+    String baseurl = 'http://127.0.0.1:90/';
+    var url = Uri.parse(baseurl + 'user/login');
+    var response = await http.post(url, 
+    body: {'username': username, 'password': password});
+
+    // print('Response body: ${response.body}');
+    var responseData = jsonDecode(response.body); 
+    if (responseData['message'] == 'Login success') {
+      showToastMessage(responseData['message'], Colors.green);
+      Navigator.pushNamed(context, '/home');
+    } 
+    else {
+      showToastMessage(responseData['message'], Colors.red);
+    }
   }
 }
